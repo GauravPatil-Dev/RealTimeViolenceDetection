@@ -37,19 +37,19 @@ To get started, clone the repository and install the required dependencies:
 
 `pip install -r requirements.txt`
 
-# Step 1: Move Files
+## Step 1: Move Files
 Navigate to the lstm_model directory and run the 1_move_file.py script to move all files into the appropriate train/test folders.
 
-# Step 2: Extract Files
+## Step 2: Extract Files
 Run the 2_extract_files.py script to extract images from the videos and create a data file for training and testing.
 
-# Step 3: Extract Features
+## Step 3: Extract Features
 Navigate to the data directory inside the lstm_model folder and run extract_features.py to generate extracted features for each video.
 
-# Step 4: Train Model
+## Step 4: Train Model
 In the same data directory, run train.py to train the LSTM model. The trained model will be saved in the checkpoints directory.
 
-# Step 5: Run Web Application
+## Step 5: Run Web Application
 Navigate to the root directory of the project and run main.py to start the web application:
 `python main.py`
 
