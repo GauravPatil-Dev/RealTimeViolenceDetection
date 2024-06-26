@@ -13,7 +13,6 @@ This project implements a real-time violence detection system using an LSTM mode
   - [Step 3: Extract Features](#step-3-extract-features)
   - [Step 4: Train Model](#step-4-train-model)
   - [Step 5: Run Web Application](#step-5-run-web-application)
-- [License](#license)
 
 ## Introduction
 
