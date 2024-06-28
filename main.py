@@ -36,7 +36,7 @@ mail = Mail(app)
 K.clear_session()
 
 inception = Extractor()  # load pre-trained inception model
-saved_model = "/home/gaurav/Downloads/eye_in_the_sky_latest/checkpoints/lstm-features-final.keras"
+saved_model = "__path_to_model__" # "data/checkpoints/lstm-features.001-0.000.hdf5
 model = load_model(saved_model)
 
 @app.route("/")
