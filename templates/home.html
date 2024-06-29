@@ -1,193 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
 
-    <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="../static/css/style.css" />
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <title>Eye In The Sky</title>
-  </head>
-  <body class="home">
-    <nav class="navbar navbar-default" style="box-shadow: 1px 1px 5px #444;">
-      <div class="container">
-        <a class="navbar-brand" href="#">
-          <!-- <img src="../static/images/logo.png" width="80" height="45" alt="" /> -->
-          <span class="navbar-brand mb-0 h1">Eye In The Sky</span>
-        </a>
-      </div>
-    </nav>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../static/css/style.css" />
+
+  <title>Eye In The Sky</title>
+</head>
+
+<body class="home">
+  <nav class="navbar navbar-default" style="box-shadow: 1px 1px 5px #444;">
     <div class="container">
-      <div class="row" style="margin-top:8%">
-        <div class="col-lg-6" style="margin-top:10%">
-          <h1 class="display-4">Real Time Violence Detection</h1>
-          <p class="lead">
-            Analyze and detect violent activities in real-time using LSTM model.
-          </p>
+      <a class="navbar-brand" href="#">
+        <!-- <img src="../static/images/logo.png" width="80" height="45" alt="" /> -->
+        <span class="navbar-brand mb-0 h1">Eye In The Sky</span>
+      </a>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row" style="margin-top:8%">
+      <div class="col-lg-6" style="margin-top:10%">
+        <h1 class="display-4">Real Time Violence Detection</h1>
+        <p class="lead">
+          Analyze and detect violent activities in real-time using LSTM model.
+        </p>
 
-          <form action="/analyze" method="POST">
-            <div class="input-group mb-3">
-              <div class="custom-file">
-                <input
-                  name="video"
-                  type="file"
-                  class="custom-file-input"
-                  id="inputGroupFile02"
-                  style=" border-radius:0"
-                />
-                <label
-                  class="custom-file-label"
-                  for="inputGroupFile02"
-                  aria-describedby="inputGroupFileAddon02"
-                  >Choose file</label
-                >
-              </div>
-              <div class="input-group-append">
-                <button
-                  type="submit"
-                  class="btn btn-dark"
-                  id="analyze"
-                  style=" border-radius:0"
-                >
-                  Analyze
-                </button>
-              </div>
+        <form action="/analyze" method="POST">
+          <div class="input-group mb-3">
+            <div class="custom-file">
+              <input name="video" type="file" class="custom-file-input" id="inputGroupFile02" style="border-radius:0"
+                accept="video/*" />
+              <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose
+                file</label>
             </div>
-          </form>
-          <form action="/live" method="POST">
-            <button
-              type="submit"
-              class="btn btn-dark"
-              id="live"
-              style=" border-radius:0"
-            >
-              Analyze Live Video
-            </button>
-          </form>
-        </div>
-        <div class="col-lg-6">
-          <div style="margin-top: 0%;" class="drone"></div>
-          <div>
-            <img
-              style="margin-top:2%"
-              src="../static/images/isometric-city.jpg"
-              alt=""
-            />
+            <div class="input-group-append">
+              <button type="submit" class="btn btn-dark" id="analyze" style=" border-radius:0">
+                Analyze
+              </button>
+            </div>
           </div>
-        </div>
+        </form>
+        <form action="/live" method="POST">
+          <button type="submit" class="btn btn-dark" id="live" style=" border-radius:0">
+            Analyze Live Video
+          </button>
+        </form>
       </div>
-
-      <div
-        class="modal fade"
-        id="exampleModal"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">
-                Frame generation complete
-              </h5>
-            </div>
-            <div class="modal-body">
-              <img src="../static/images/giphy2.gif" alt="" />
-
-              <h5 class="text-center">
-                Getting things ready
-              </h5>
-            </div>
-          </div>
+      <div class="col-lg-6">
+        <div style="margin-top: 0%;" class="drone"></div>
+        <div>
+          <img style="margin-top:2%" src="../static/images/isometric-city.jpg" alt="" />
         </div>
       </div>
     </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Frame generation complete
+            </h5>
+          </div>
+          <div class="modal-body">
+            <img src="../static/images/giphy2.gif" alt="" />
 
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-      crossorigin="anonymous"
-    ></script>
-    <script>
-      $("#inputGroupFile02").on("change", function() {
-        //get the file name
-        var fileName = $(this).val();
-        //replace the "Choose a file" label
-        $(this)
-          .next(".custom-file-label")
-          .html(fileName);
-      });
-      $("#analyze").click(function(e) {
-        $("#loading").show();
-        setTimeout(function() {
-          $("#loading").hide();
-        }, 80000);
-        setTimeout(function() {
-          $("#loading2").show();
-          // $("#exampleModal").modal("toggle");
-        }, 80000);
-      });
-      $("#live").click(function(e) {
-        $("#loading").show();
-        setTimeout(function() {
-          $("#loading").hide();
-        }, 80000);
-        setTimeout(function() {
-          $("#loading2").show();
-          // $("#exampleModal").modal("toggle");
-        }, 80000);
-      });
-      $(window).on("load", function() {
+            <h5 class="text-center">
+              Getting things ready
+            </h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script>
+    $("#inputGroupFile02").on("change", function () {
+      //get the file name
+      var fileName = this.files[0].name;
+      //replace the "Choose a file" label
+      $(this)
+        .next(".custom-file-label")
+        .html(fileName);
+    });
+
+    $("#analyze").click(function (e) {
+      $("#loading").show();
+      setTimeout(function () {
         $("#loading").hide();
-      });
-      $(window).on("load", function() {
-        $("#loading2").hide();
-      });
-    </script>
+      }, 80000);
+      setTimeout(function () {
+        $("#loading2").show();
+        // $("#exampleModal").modal("toggle");
+      }, 80000);
+    });
+    $("#live").click(function (e) {
+      $("#loading").show();
+      setTimeout(function () {
+        $("#loading").hide();
+      }, 80000);
+      setTimeout(function () {
+        $("#loading2").show();
+        // $("#exampleModal").modal("toggle");
+      }, 80000);
+    });
+    $(window).on("load", function () {
+      $("#loading").hide();
+    });
+    $(window).on("load", function () {
+      $("#loading2").hide();
+    });
+  </script>
 
-    <div id="loading" class="center">
-      <img
-        id="loading-image"
-        src="../static/images/processing.gif"
-        alt="Loading..."
-      />
-      <h4 id="message">
-        Generating Frames <br />
-        Hang on tight! This might take a while...
-      </h4>
-    </div>
-    <div id="loading2" class="center">
-      <img
-        id="loading-image"
-        src="../static/images/giphy2.gif"
-        alt="Loading..."
-      />
-      <h4 id="message2">Frame Generation complete! Getting things ready</h4>
-    </div>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+  <div id="loading" class="center">
+    <img id="loading-image" src="../static/images/processing.gif" alt="Loading..." />
+    <h4 id="message">
+      Generating Frames <br />
+      Hang on tight! This might take a while...
+    </h4>
+  </div>
+  <div id="loading2" class="center">
+    <img id="loading-image" src="../static/images/giphy2.gif" alt="Loading..." />
+    <h4 id="message2">Frame Generation complete! Getting things ready</h4>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
