@@ -13,7 +13,7 @@ This project implements a real-time violence detection system using an LSTM mode
   - [Step 3: Extract Features](#step-3-extract-features)
   - [Step 4: Train Model](#step-4-train-model)
   - [Step 5: Run Web Application](#step-5-run-web-application)
-
+- [License](#License)
 ## Introduction
 
 The system processes video footage to detect violent activities in real-time. It uses a combination of Convolutional Neural Networks (CNN) and Recurrent Neural Networks (RNN - LSTM) to classify video sequences and compute a mean violence score for each sequence.
@@ -38,7 +38,6 @@ To get started, clone the repository and install the required dependencies:
 
 ### Install `ffmpeg` for Frame Extraction
 FFmpeg is required for extracting frames from videos. Follow the instructions below to install FFmpeg on your system:
-
   ### On Ubuntu/Debian:
 
   `sudo apt update`
@@ -57,7 +56,6 @@ FFmpeg is required for extracting frames from videos. Follow the instructions be
 
   Add the bin folder from the extracted files to your system's PATH.
 
-
 ## Step 1: Move Files
 Navigate to the lstm_model directory and run the 1_move_file.py script to move all files into the appropriate train/test folders.
 
@@ -75,3 +73,27 @@ Navigate to the root directory of the project and run main.py to start the web a
 `python main.py`
 
 Ensure the saved_model path variable in main.py points to the correct location of the trained model
+
+## License
+```markdown
+MIT License
+
+Copyright (c) 2024 GauravPatil-Dev
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
