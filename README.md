@@ -36,6 +36,28 @@ To get started, clone the repository and install the required dependencies:
 
 `pip install -r requirements.txt`
 
+### Install `ffmpeg` for Frame Extraction
+FFmpeg is required for extracting frames from videos. Follow the instructions below to install FFmpeg on your system:
+
+  ### On Ubuntu/Debian:
+
+  `sudo apt update`
+
+  `sudo apt install ffmpeg`
+
+  ### On macOS using Homebrew:
+
+  `brew install ffmpeg`
+
+  ### On Windows:
+
+  Download ffmpeg from ffmpeg.org
+
+  Extract the downloaded zip file.
+
+  Add the bin folder from the extracted files to your system's PATH.
+
+
 ## Step 1: Move Files
 Navigate to the lstm_model directory and run the 1_move_file.py script to move all files into the appropriate train/test folders.
 
