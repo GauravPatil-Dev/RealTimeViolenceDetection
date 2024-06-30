@@ -31,7 +31,7 @@ socketio = SocketIO(app)
 K.clear_session()
 
 inception = Extractor()
-saved_model = "/home/gaurav/Pictures/eye_in_the_sky_latest/checkpoints/lstm-features-final.keras"
+saved_model = "__path_to_model__"
 model = load_model(saved_model)
 
 @app.route("/")
@@ -54,8 +54,10 @@ def analyze():
         print(f"File {file_path} does not exist.")
         return redirect("/")
 
-    call(["ffmpeg", "-i", file_path, "-r", str(seq_length),
-          os.path.join('static/extracted_frames', fname + '-%04d.jpg')])
+    #call(["ffmpeg", "-i", file_path, "-r", str(seq_length),
+    #      os.path.join('static/extracted_frames', fname + '-%04d.jpg')])
+    call(["ffmpeg", "-i", file_path, "-r", str(seq_length), "-pix_fmt", "yuv420p", os.path.join('static/extracted_frames', fname + '-%04d.jpg')])
+
 
     frames = sorted(glob.glob(os.path.join(
         'static/extracted_frames', fname + '*jpg')))
@@ -142,9 +144,9 @@ def start_stream():
     cap = cv2.VideoCapture(0)
     video_path = f'static/live_videos/{fname}.mp4'
     out = cv2.VideoWriter(video_path, cv2.VideoWriter_fourcc(*'mp4v'), 20.0, (640,480))
-
+    frame_count_limit = 10*20 # 10 seconds of video with 20 fps
     frame_count = 0
-    while frame_count < 100:
+    while frame_count < frame_count_limit:
         ret, frame = cap.read()
         if ret:
             out.write(frame)
