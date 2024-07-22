@@ -31,7 +31,7 @@ socketio = SocketIO(app)
 K.clear_session()
 
 inception = Extractor()
-saved_model = "__path_to_model__"
+saved_model = "data/Checkpoints/lstm-features-final.keras"
 model = load_model(saved_model)
 
 @app.route("/")
