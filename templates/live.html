@@ -54,14 +54,16 @@
       overflow-y: auto;
     }
     .center {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  text-align: center;
-  display: none;
-  z-index: 9999; /* Ensure it is on top of other elements */
-}
-
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      text-align: center;
+      display: none;
+      z-index: 9999; /* Ensure it is on top of other elements */
+    }
+    .btn {
+      margin-right: 10px;
+    }
   </style>
 </head>
 <body>
@@ -80,6 +82,7 @@
           <div class="card-body text-center">
             <h4 class="card-title">Live Video</h4>
             <button id="startStreamBtn" class="btn btn-primary">Start Stream</button>
+            <button id="stopStreamBtn" class="btn btn-danger" style="display: none;">Stop Stream</button>
             <img id="liveFrame" />
           </div>
         </div>
@@ -95,7 +98,7 @@
     </div>
   </div>
 
-  <div id="loading" class="center"style="display: none;">
+  <div id="loading" class="center" style="display: none;">
     <img id="loading-image" src="../static/images/processing.gif" alt="Loading..." />
     <h4 id="message">
       Generating Frames <br />
@@ -111,38 +114,58 @@
   <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
 
   <script>
-    var socket = io();
+    var socket = io.connect('http://' + document.domain + ':' + location.port);
+    var streaming = false;
 
     document.getElementById("startStreamBtn").addEventListener("click", function () {
       document.getElementById("liveFrame").style.display = "block";
+      document.getElementById("startStreamBtn").style.display = "none";
+      document.getElementById("stopStreamBtn").style.display = "inline-block";
+      document.getElementById("analysisPlot").style.display = "block";
       socket.emit('start_stream');
+      streaming = true;
+    });
 
-      socket.on('frame', function (data) {
-        document.getElementById("liveFrame").src = 'data:image/jpeg;base64,' + data.frame;
-      });
+    document.getElementById("stopStreamBtn").addEventListener("click", function () {
+      socket.emit('stop_stream');
+      streaming = false;
+      document.getElementById("startStreamBtn").style.display = "inline-block";
+      document.getElementById("stopStreamBtn").style.display = "none";
+      document.getElementById("liveFrame").style.display = "none";
+      document.getElementById("liveFrame").src = "";
+    });
 
-      socket.on('stream_complete', function (data) {
-        console.log("Stream complete");
-        console.log(data.video_path);
+    socket.on('frame', function (data) {
+      document.getElementById("liveFrame").src = 'data:image/jpeg;base64,' + data.frame;
+    });
 
-        // Clear the live frame
-        document.getElementById("liveFrame").style.display = "none";
-        document.getElementById("liveFrame").src = "";
+    socket.on('violence_score', function (data) {
+      console.log("Violence score:", data.score);
+      // You can add logic here to display the violence score in real-time if needed
+    });
 
-        // Show the loading symbol
-        document.getElementById("loading").style.display = "block";
+    socket.on('violence_alert', function (data) {
+      console.log("Violence alert! Score:", data.score);
+      alert(`Violence detected! Score: ${data.score.toFixed(2)}`);
+      // You can also update the UI to show a more prominent alert
+      document.body.style.backgroundColor = 'red';
+      setTimeout(() => {
+        document.body.style.backgroundColor = '';
+      }, 3000);  // Reset after 3 seconds
+    });
 
-        socket.emit('process_stream', { video_path: data.video_path });
-      });
+    socket.on('plot_update', function (data) {
+      document.getElementById("analysisPlot").src = 'data:image/png;base64,' + data.plot_data;
+    });
 
-      socket.on('plot_complete', function (data) {
-        document.getElementById("analysisPlot").src = data.plot_path;
-        document.getElementById("analysisPlot").style.display = "block";
-
-        // Hide the loading symbol
-        document.getElementById("loading").style.display = "none";
-      });
+    socket.on('stream_stopped', function() {
+      streaming = false;
+      document.getElementById("startStreamBtn").style.display = "inline-block";
+      document.getElementById("stopStreamBtn").style.display = "none";
+      document.getElementById("liveFrame").style.display = "none";
+      document.getElementById("liveFrame").src = "";
     });
   </script>
+
 </body>
 </html>
